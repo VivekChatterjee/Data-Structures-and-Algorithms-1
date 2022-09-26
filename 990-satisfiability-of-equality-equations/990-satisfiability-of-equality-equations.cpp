@@ -1,10 +1,10 @@
 class Solution {
 public:
-    int parent[27];
-    int rank[27];
+    int parent[26];
+    int rank[26];
     
     void makeSet(){
-        for(int i=0;i<27;i++)
+        for(int i=0;i<26;i++)
         {
             parent[i]=i;
             rank[i]=0;
