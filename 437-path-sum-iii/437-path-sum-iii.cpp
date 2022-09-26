@@ -20,21 +20,15 @@ public:
         sum+=root->val;
         if(sum==t)
             count++;
-        
         // with current sum
         dfs(root->left,sum,t);
         dfs(root->right,sum,t);
-        
-        // without current sum
-        // dfs(root->left,0,t);
-        // dfs(root->right,0,t);
     }
     
     int pathSum(TreeNode* root, int t) {
         
         if(root==NULL)
             return 0;
-        
         int sum=0;
         dfs(root,(ll)sum,(ll)t);
         if(root->left)
