@@ -28,70 +28,27 @@ public:
     string pushDominoes(string domi) {
         string ans=domi;
         int right=0,left=0;
-        int nl=0,nr=0;
-        int i=0;
         while(right<=left && left<ans.size())
         {    
-            // cout<<(i++)<<"left="<<left<<" right="<<right<<endl;
-            
-            // if(nr==1 && nl==0 && left>=ans.size()-1)
-            //     {
-            //         // cout<<"dd\n";
-            //         rt(ans,right+1);
-            //         nr--;
-            //     }
-            
             if(right==left && domi[right]!='R')
-            {
-                // cout<<"!=r"<<endl;
-//                 if(domi[right]=='L')
-//                     nl++;
-                
-//                 if(nl==1 && nr==0)
-//                 {
-//                     // cout<<"ok\n";
-//                     lt(ans,right-1);
-//                     // nl--;
-//                 }                
+            {         
                 right++;
                 left++;
-                // continue;
             }
             if(right==left && domi[right]=='R')
-            {
-                // cout<<"r==r\n";
-                // nr++;
                 left++;   
-                
-                // if(nr==1 && nl==0 && left>=ans.size()-1)
-                // {
-                //     // cout<<"dd\n";
-                //     rt(ans,right+1);
-                //     // nr--;
-                // }
-                
-                // continue;
-            }
             if(left>right && domi[left]=='.')
                 left++;
-            
             if(left>right && domi[left]=='R')
             {
-                // cout<<"l==r\n";
                 right=left;
                 left++;
-                // continue;
             }
             if(left>right && domi[left]=='L')
             {
-                // cout<<"l==l\n";
                 fall(ans,right+1,left-1);
                 right=left+1;
                 left++;
-                // nl++;
-                // nr--;
-                // nl--;
-                // continue;
             }
         }
         
@@ -106,7 +63,6 @@ public:
             }
             else if(i!=0 && ans[i]=='L' && ans[i-1]=='.')
                 lt(ans,i-1);
-            
             }
             else if(ans[i]=='R')
             {
@@ -117,12 +73,8 @@ public:
             }
             else if(ans[i]=='R' && ans[i+1]=='.')
                 rt(ans,i+1);
-            }
-
-            
+            } 
         }
-        
-        
         return ans;
     }
 };
