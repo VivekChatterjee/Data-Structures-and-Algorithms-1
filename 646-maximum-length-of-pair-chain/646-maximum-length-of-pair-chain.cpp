@@ -3,55 +3,17 @@ public:
     int dp[1001][1001];
     int chain(vector<vector<int>>& pairs, int start, int last,int len)
     {
-        // without dp
-//         if(start >= pairs.size())
-//             return len;
-        
-//         int notInc=0,inc=0;
-//         // will include this element
-//         if(last==-1 || pairs[start][0] > pairs[last][1])
-//             inc = chain(pairs,start+1,start,len+1);
-//         // will not include
-//         notInc = chain(pairs,start+1,last,len);
-//         return max(inc,notInc);
-        
-        //with dp
         if(start >= pairs.size())
             return 0;
-        
         if(dp[start][last+1] != -1)
             return dp[start][last+1];
-        
-        int inc=0;
+        int inc=0,notInc=0;
         // will include this element
         if(last==-1 || pairs[start][0] > pairs[last][1] )
             inc = 1 + chain(pairs,start+1,start,len+1);
         // will not include
-        int notInc = chain(pairs,start+1,last,len);
+        notInc = chain(pairs,start+1,last,len);
         return dp[start][last+1] = max(inc,notInc);
-        
-        
-        
-//         int lt=last;
-//         if(last<0)
-//         {
-//             if(last==INT_MIN)
-//                 lt=1001;
-//             else
-//                 lt+=2003;
-//         }
-//         if(start >= pairs.size())
-//             return dp[start][lt]=len;
-        
-//         if(dp[start][lt]!=-1)
-//             return dp[start][lt];
-//         int notInc=0,inc=0;
-//         // will include this element
-//         if(pairs[start][0] > last)
-//             inc = chain(pairs,start+1,pairs[start][1],len+1);
-//         // will not include
-//         notInc = chain(pairs,start+1,last,len);
-//         return dp[start][lt]= max(inc,notInc);
     }
     
     int findLongestChain(vector<vector<int>>& pairs) {
