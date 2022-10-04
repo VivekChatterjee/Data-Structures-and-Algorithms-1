@@ -9,33 +9,24 @@
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
+// Recursive
+
 class Solution {
 public:
-    vector<int> rightSideView(TreeNode* root) {
-        map<int,int>m;
-        queue<pair<TreeNode*, int>>q;
-        vector<int>ans;
+    vector<int>ans;
+    void right(TreeNode* root, int level)
+    {
         if(root==NULL)
-            return ans;
-        q.push({root,0});
-        while(!q.empty())
-        {
-            auto cur=q.front();
-            q.pop();
-            TreeNode* node=cur.first;
-            
-            int level=cur.second;
-            
-            if(!m.count(level))
-            m[level]=node->val;
-            
-            if(node->right)
-                q.push({node->right, level+1});
-            if(node->left)
-                q.push({node->left, level+1});                
-        }
-        for(auto i:m)
-            ans.push_back(i.second);
+            return;
+        if(level==ans.size())
+            ans.push_back(root->val);
+        if(root->right)
+            right(root->right,level+1);
+        if(root->left)
+            right(root->left,level+1);
+    }
+    vector<int> rightSideView(TreeNode* root) {
+        right(root,0);
         return ans;
     }
 };
