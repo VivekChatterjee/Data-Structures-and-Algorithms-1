@@ -9,10 +9,9 @@ public:
     }
     
     string get(string key, int timestamp) {
-                auto &p = m[key];
-                auto ind = p.lower_bound(timestamp);
-                if(ind == p.end())
-                    return "";
-                return ind->second;
+            auto &p = m[key];
+            auto ind = p.lower_bound(timestamp);
+            if(ind == p.end()) return "";
+            return ind->second;
     }
 };
