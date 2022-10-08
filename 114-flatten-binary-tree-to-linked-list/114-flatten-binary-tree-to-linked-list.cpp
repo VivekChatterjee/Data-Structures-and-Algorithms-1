@@ -25,20 +25,43 @@
 // };
 
 // Using Stack
+// class Solution {
+// public:
+//     void flatten(TreeNode* root) {
+//         stack<TreeNode*>s;
+//         if(root == NULL) return;
+//         s.push(root);
+//         while(!s.empty())
+//         {
+//             TreeNode* cur = s.top();
+//             s.pop();
+//             if(cur->right) s.push(cur->right);
+//             if(cur->left) s.push(cur->left);
+//             if(!s.empty()) cur->right = s.top();
+//             cur->left = NULL;
+//         }
+//     }
+// };
+
+
+// Using Morris Traversal
 class Solution {
 public:
     void flatten(TreeNode* root) {
-        stack<TreeNode*>s;
-        if(root == NULL) return;
-        s.push(root);
-        while(!s.empty())
+        TreeNode* cur = root;
+        TreeNode* prev;
+        while(cur)
         {
-            TreeNode* cur = s.top();
-            s.pop();
-            if(cur->right) s.push(cur->right);
-            if(cur->left) s.push(cur->left);
-            if(!s.empty()) cur->right = s.top();
-            cur->left = NULL;
+            if(cur->left)
+            {
+                prev = cur->left;
+                while(prev->right)
+                    prev = prev->right;
+                prev->right = cur->right;
+                cur->right = cur->left;
+                cur->left = NULL;
+            }
+            cur = cur->right;
         }
     }
 };
