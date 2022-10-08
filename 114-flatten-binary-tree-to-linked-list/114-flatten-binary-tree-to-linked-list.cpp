@@ -49,7 +49,6 @@ class Solution {
 public:
     void flatten(TreeNode* root) {
         TreeNode* cur = root;
-        // TreeNode* prev;
         while(cur)
         {
             if(cur->left)
