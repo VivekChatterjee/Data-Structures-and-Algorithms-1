@@ -5,10 +5,9 @@ public:
         sort(nums.begin(), nums.end());
         int cur=nums[0]+nums[1]+nums[2];
         int ans=cur;
-        int diff = INT_MAX;
+        int diff = abs(target-cur);
         for(int i=0; i<n-2; i++)
         {
-            diff = min(diff,abs(target-cur));
             int start = i+1;
             int end = n-1;
             while(start<end)
