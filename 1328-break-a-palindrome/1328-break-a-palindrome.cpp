@@ -29,14 +29,7 @@ public:
         if(ct==1) p[i] = 'a';
         else
         {
-            for(char c='a';c<='z';c++)
-            {
-                if(c!=p[p.size()-1])
-                {
-                    p[p.size()-1] = c;
-                    break;
-                }
-            }
+            p[p.size()-1] = 'b';
         }
         return p;
     }
