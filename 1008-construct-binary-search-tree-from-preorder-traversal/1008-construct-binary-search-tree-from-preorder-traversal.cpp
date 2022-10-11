@@ -18,7 +18,7 @@ public:
     
     TreeNode* build(vector<int> &pre, int &i, int maxi)
     {
-        if(i == pre.size() || pre[i] > maxi) return NULL;
+        if(i == pre.size() || pre[i] >= maxi) return NULL;
         TreeNode* root = new TreeNode(pre[i++]);
         root->left = build(pre, i, root->val);
         root->right = build(pre, i, maxi);
