@@ -12,7 +12,7 @@ public:
         }
         int mini = nums[0];
         bool ans=false;
-        for(int i=1;i<n;i++)
+        for(int i=1;i<n-1;i++)
         {
             if(nums[i] > mini && nums[i] < rightMax[i])
             {
