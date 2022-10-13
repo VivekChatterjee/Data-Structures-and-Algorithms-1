@@ -16,15 +16,10 @@ public:
             // picked, staying on current index
             v.push_back(c[i]);
             solve(c,t-c[i] ,v,i);
-            
-            // not picked, moving to next index
             v.pop_back();
-            solve(c,t,v,i+1);
         }
         // current element not picked
-        else
         solve(c,t,v,i+1);
-        
     }
         
     
