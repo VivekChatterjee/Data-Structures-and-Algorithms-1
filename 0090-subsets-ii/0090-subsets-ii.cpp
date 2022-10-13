@@ -7,7 +7,7 @@ public:
         ans.push_back(v);
         for(int j=i;j<nums.size();j++)
         {
-            if(j!=i && nums[j]==nums[j-1]) continue;
+            if(j>i && nums[j]==nums[j-1]) continue;
             // take current
             v.push_back(nums[j]);
             solve(nums,j+1,v);
