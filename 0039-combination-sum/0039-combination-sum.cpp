@@ -5,19 +5,12 @@ public:
     
     void solve(vc<int>& c, int t, vc<int>v, int i)
     {
-        
-        if(t == 0)
-        {
-            ans.push_back(v);            
-            return;
-        }
-        
         if(i>=c.size())
         {
+            if(t == 0)
+                ans.push_back(v);   
             return;
         }
-        
-        
         if(c[i] <= t)
         {
             // picked, staying on current index
