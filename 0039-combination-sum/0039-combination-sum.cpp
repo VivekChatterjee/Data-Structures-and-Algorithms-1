@@ -2,7 +2,6 @@
 class Solution {
 public:
     vc<vc<int>>ans;
-    
     void solve(vc<int>& c, int t, vc<int>v, int i)
     {
         if(i>=c.size())
@@ -21,8 +20,6 @@ public:
         // current element not picked
         solve(c,t,v,i+1);
     }
-        
-    
     vector<vector<int>> combinationSum(vector<int>& c, int t) {
         vc<int>v;
         solve(c,t,v,0);
