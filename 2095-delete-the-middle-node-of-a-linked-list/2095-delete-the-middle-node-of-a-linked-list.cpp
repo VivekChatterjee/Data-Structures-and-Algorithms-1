@@ -21,7 +21,8 @@ public:
             slow=slow->next;
             fast=fast->next->next;
         }
-        beforeMid->next=beforeMid->next->next;
+        
+        beforeMid->next = beforeMid->next->next;
         return head;
     }
 };
