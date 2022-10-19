@@ -14,9 +14,9 @@ public:
         for(auto i:words)
             m[i]++;
         vector<pair<int,string>>v;
-        for(auto it=m.rbegin();it!=m.rend();it++)
+        for(auto it:m)
         {
-            v.push_back({it->second, it->first});
+            v.push_back({it.second, it.first});
         }
         sort(v.begin(),v.end(),compare);
         vector<string>ans;
