@@ -1,13 +1,17 @@
+// #include<bits/stdc++.h>
 class Solution {
 public:
-    int climb(vector<int>&dp, int n)
+    int climb(int n, vector<int>&dp)
     {
-        if(n==0 || n==1) return 1;
-        if(dp[n]!=-1) return dp[n];
-        return dp[n]=climb(dp,n-1)+climb(dp,n-2);
+        if(n<3) return dp[n-1];
+        if(dp[n] != -1) return dp[n-1];
+        return dp[n-1]=climb(n-1,dp)+climb(n-2,dp);
     }
     int climbStairs(int n) {
-        vector<int>dp(n+1,-1);
-        return climb(dp,n);
+        vector<int> dp(n+1,-1);
+        dp[0]=1;
+        dp[1]=2;
+        return climb(n,dp);
+        return 1;
     }
 };
