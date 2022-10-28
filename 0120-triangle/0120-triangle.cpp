@@ -1,30 +1,52 @@
-// tabulation
+// tabulation - striver method
 class Solution {
 public:
     int minimumTotal(vector<vector<int>>& triangle) {
         int m=triangle.size();
-        int n=triangle[m-1].size();
-        vector<vector<int>>dp(m,vector<int>(n,-1));
-        dp[0][0]=triangle[0][0];
-        for(int i=1;i<m;i++) dp[i][0]=triangle[i][0]+dp[i-1][0];
-        for(int i=1;i<m;i++)
+        vector<vector<int>>dp(m,vector<int>(m,-1));
+        for(int j=0;j<m;j++)
         {
-            for(int j=1;j<triangle[i].size();j++)
+            dp[m-1][j]=triangle[m-1][j];
+        }
+        for(int i=m-2;i>=0;i--)
+        {
+            for(int j=0;j<triangle[i].size();j++)
             {
-                dp[i][j]=triangle[i][j];
-                int mini=INT_MAX;
-                mini=min(mini, dp[i-1][j-1]);
-                if(j<triangle[i-1].size())
-                    mini=min(mini, dp[i-1][j]);
-                dp[i][j]+=mini;                    
+                dp[i][j]=triangle[i][j]+min(dp[i+1][j], dp[i+1][j+1]);
             }
         }
-        int mini=INT_MAX;
-        for(int j=0;j<n;j++)
-            mini=min(mini, dp[m-1][j]);
-        return mini;
+        return dp[0][0];
     }
 };
+
+
+// tabulation - my method
+// class Solution {
+// public:
+//     int minimumTotal(vector<vector<int>>& triangle) {
+        // int m=triangle.size();
+        // int n=triangle[m-1].size();
+        // vector<vector<int>>dp(m,vector<int>(n,-1));
+//         dp[0][0]=triangle[0][0];
+//         for(int i=1;i<m;i++) dp[i][0]=triangle[i][0]+dp[i-1][0];
+//         for(int i=1;i<m;i++)
+//         {
+//             for(int j=1;j<triangle[i].size();j++)
+//             {
+//                 dp[i][j]=triangle[i][j];
+//                 int mini=INT_MAX;
+//                 mini=min(mini, dp[i-1][j-1]);
+//                 if(j<triangle[i-1].size())
+//                     mini=min(mini, dp[i-1][j]);
+//                 dp[i][j]+=mini;                    
+//             }
+//         }
+//         int mini=INT_MAX;
+//         for(int j=0;j<n;j++)
+//             mini=min(mini, dp[m-1][j]);
+//         return mini;
+//     }
+// };
 
 
 
