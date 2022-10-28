@@ -1,3 +1,25 @@
+// space optimization
+class Solution {
+public:
+    int minimumTotal(vector<vector<int>>& triangle) {
+        int m=triangle.size();
+        vector<int>front(m),cur(m);
+        for(int j=0;j<m;j++)
+            front[j]=triangle[m-1][j];
+        for(int i=m-2;i>=0;i--)
+        {
+            for(int j=i;j>=0;j--)
+            {
+                cur[j]=triangle[i][j]+min(front[j], front[j+1]);
+            }
+            front=cur;
+        }
+        return front[0];
+    }
+};
+
+
+
 // tabulation - striver method
 // class Solution {
 // public:
@@ -51,24 +73,23 @@
 
 
 // memoization
-class Solution {
-public:
-    int path(int i, int j, vector<vector<int>>& triangle, vector<vector<int>>& dp)
-    {
-        int m=triangle.size();
-        int n=triangle[i].size();
-        if(i == m-1) return triangle[i][j];
-        if(dp[i][j] != -1) return dp[i][j];
-        int down=0, downRight=0;
-        // down
-        down+=triangle[i][j]+path(i+1,j,triangle,dp);
-        // down and right
-        downRight+=triangle[i][j]+path(i+1,j+1,triangle,dp);
-        return dp[i][j]=min(down,downRight);
-    }
-    int minimumTotal(vector<vector<int>>& triangle) {
-        int m=triangle.size();
-        vector<vector<int>>dp(m,vector<int>(m,-1));
-        return path(0,0, triangle, dp);
-    }
-};
+// class Solution {
+// public:
+//     int path(int i, int j, vector<vector<int>>& triangle, vector<vector<int>>& dp)
+//     {
+//         int m=triangle.size();
+//         if(i == m-1) return triangle[i][j];
+//         if(dp[i][j] != -1) return dp[i][j];
+//         int down=0, downRight=0;
+//         // down
+//         down+=triangle[i][j]+path(i+1,j,triangle,dp);
+//         // down and right
+//         downRight+=triangle[i][j]+path(i+1,j+1,triangle,dp);
+//         return dp[i][j]=min(down,downRight);
+//     }
+//     int minimumTotal(vector<vector<int>>& triangle) {
+//         int m=triangle.size();
+//         vector<vector<int>>dp(m,vector<int>(m,-1));
+//         return path(0,0, triangle, dp);
+//     }
+// };
