@@ -18,7 +18,7 @@ class Solution {
 		    v.push_back(2);
 		    for(ll i=1;i<=n;i++)
 		    {
-		        ll num =( (i+1) * (v[i-1]) % K) % K;
+		        ll num =( (i+1) * (v[i-1])) % K;
 		        v.push_back(num+1);
 		    }
 		    return v[n-1];
