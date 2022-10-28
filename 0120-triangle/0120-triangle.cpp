@@ -1,26 +1,24 @@
-#define vc vector
-#define ll long long int
+// memoization
 class Solution {
 public:
-    int dp[201][201];
-    int path(vc<vc<int>>&tri, int i, int j, int des)
+    int path(int i, int j, vector<vector<int>>& triangle, vector<vector<int>>& dp)
     {
-        if(i<0 || i>des || j<0 || j>=tri[i].size())
-            return INT_MAX;
-        if(dp[i][j]!=-1)
-            return dp[i][j];
-        if(i==des)
-            return tri[i][j];
-        ll down=0, dia=0;
+        int m=triangle.size();
+        int n=triangle[i].size();
+        if(j>=n) return 1e9;
+        if(i == m-1) return triangle[i][j];
+        if(dp[i][j] != -1) return dp[i][j];
+        int down=0, downRight=0;
         // down
-        down=tri[i][j]+path(tri,i+1,j,des);
-        //diagonal
-        dia=tri[i][j]+path(tri,i+1,j+1,des);
-        return dp[i][j]=min(down,dia);
+        down+=triangle[i][j]+path(i+1,j,triangle,dp);
+        // down and right
+        downRight+=triangle[i][j]+path(i+1,j+1,triangle,dp);
+        return dp[i][j]=min(down,downRight);
     }
-    
     int minimumTotal(vector<vector<int>>& triangle) {
-        memset(dp,-1,sizeof(dp));
-        return path(triangle, 0,0, triangle.size()-1);
+        int m=triangle.size();
+        int n=triangle[m-1].size();
+        vector<vector<int>>dp(m,vector<int>(n,-1));
+        return path(0,0, triangle, dp);
     }
 };
