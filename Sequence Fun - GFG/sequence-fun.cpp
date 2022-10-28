@@ -21,7 +21,7 @@ class Solution {
 		        ll num =( (i+1) * (v[i-1]) % K) % K;
 		        v.push_back(num+1 % K);
 		    }
-		    return v[n-1] % K;
+		    return v[n-1];
 		}
 
 };
