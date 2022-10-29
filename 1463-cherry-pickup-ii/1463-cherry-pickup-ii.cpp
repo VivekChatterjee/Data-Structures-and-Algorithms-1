@@ -7,16 +7,17 @@ public:
     if(alexaj < 0 || alexaj >= c || bobj < 0 || bobj >= c || alexaj == bobj) return 0;
     if(i == r-1) return grid[i][alexaj] + grid[i][bobj];
     if(dp[i][alexaj][bobj] != -1) return dp[i][alexaj][bobj];
-    int maxx=grid[i][alexaj] + grid[i][bobj];
     int maxi=INT_MIN;
     for(int j=-1; j<2;j++)
     {
         for(int jj=-1;jj<2;jj++)
         {
-            maxi=max(maxi, chocolates(i+1, alexaj+j, bobj+jj, grid, dp));
+            int value=grid[i][alexaj] + grid[i][bobj];
+            value+= chocolates(i+1, alexaj+j, bobj+jj, grid, dp);
+            maxi=max(maxi, value);
         }
     }
-    return dp[i][alexaj][bobj] = maxx+maxi;
+    return dp[i][alexaj][bobj] = maxi;
     }
     int cherryPickup(vector<vector<int>>& grid) {
         int r=grid.size();
