@@ -4,11 +4,7 @@ public:
     {
         int m=grid.size();
         int n=grid[0].size();
-        if(i<0 || j<0 || j>=n || (grid[i][j]==1 && j+1<n && grid[i][j+1]==-1) || (grid[i][j]==-1 && j-1>=0 && grid[i][j-1]==1))
-        {
-            // cout<<grid[i][j]<<" i="<<i<<" j="<<j<<endl;
-            return -1;
-        }
+        if(i<0 || j<0 || j>=n || (grid[i][j]==1 && j+1<n && grid[i][j+1]==-1) || (grid[i][j]==-1 && j-1>=0 && grid[i][j-1]==1)) return -1;
         if(i==m-1)
         {
             if(grid[i][j]==1)
@@ -31,16 +27,12 @@ public:
             }
         }
         int right=-1, left=-1;
-        // go right
         if(grid[i][j]==1)
             right=ball(i+1, j+1, grid, dp);
         else
             left=ball(i+1, j-1, grid, dp);
         
-        if(left==-1 && right==-1)
-        {
-            return -1;
-        }
+        if(left==-1 && right==-1) return -1;
         else
         {
             if(left!=-1) return left;
