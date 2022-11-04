@@ -4,24 +4,25 @@ public:
     void setZeroes(vector<vector<int>>& matrix) {
         int r=matrix.size();
         int c=matrix[0].size();
-        vector<int> rowZeroes(r,-1), colZeroes(c,-1);
+        // for 0th column
+        int colZero=-1;
         for(int i=0; i<r; i++)
         {
-            for(int j=0; j<c; j++)
+            //0th col is considered here
+            if(matrix[i][0] == 0) colZero=0;
+            for(int j=1; j<c; j++)
             {
                 if(matrix[i][j] == 0)
-                {
-                    rowZeroes[i]=0;
-                    colZeroes[j]=0;
-                }
+                matrix[i][0] = matrix[0][j] = 0;
             }
         }
-        for(int i=0;i<r;i++)
+        for(int i=r-1; i>=0; i--)
         {
-            for(int j=0;j<c;j++)
+            for(int j=c-1; j>0; j--)
             {
-                if(rowZeroes[i]==0 || colZeroes[j]==0) matrix[i][j]=0;
+                if(matrix[i][0] == 0 || matrix[0][j] == 0) matrix[i][j]=0;
             }
+            if(colZero == 0) matrix[i][0]=0;
         }
     }
 };
