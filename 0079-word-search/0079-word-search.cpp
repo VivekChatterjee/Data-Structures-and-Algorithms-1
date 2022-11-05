@@ -10,7 +10,8 @@ public:
             if(board[i][j] == word[k]) return 1;
             else return 0;
         }
-        board[i][j]-=60;
+        char c=board[i][j];
+        board[i][j]='5';
         bool left=0, right=0, up=0, down=0;
         // left
         left = search(k+1, i, j-1, board, word);
@@ -20,7 +21,7 @@ public:
         up = search(k+1, i-1, j, board, word);
         // down
         down = search(k+1, i+1, j, board, word);
-        board[i][j]+=60;
+        board[i][j]=c;
         return (left || right || up || down);
     }
     bool exist(vector<vector<char>>& board, string word) {
