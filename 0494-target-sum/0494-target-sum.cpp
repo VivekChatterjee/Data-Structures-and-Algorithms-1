@@ -8,12 +8,9 @@ public:
             else return 0;
         }
         if(dp[i][sum+1000] != -1) return dp[i][sum+1000];
-        
         int neg = 0, pos = 0;
-        
         // take -ve
         neg = find(i+1,sum-nums[i],nums,target,dp);
-        
         // take +ve
         pos = find(i+1,sum+nums[i],nums,target,dp);
         return dp[i][sum+1000] = neg + pos;
