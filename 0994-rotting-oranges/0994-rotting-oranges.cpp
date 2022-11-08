@@ -14,10 +14,13 @@ public:
             for(int j=0;j<n;j++)
             {
                 if(grid[i][j]==2)
+                {
                     q.push({i,j});
+                }
                 if(grid[i][j]==1)
                     fresh++;
             }
+        if(fresh == 0) return 0;
         int ans=0;
         while(!q.empty())
         {
@@ -30,20 +33,32 @@ public:
                 {
                     int r=p.first+dir[i];
                     int c=p.second+dir[i+1];
-                    if(r>=0 && r<m && c>=0 && c<n &&grid[r][c]==1)
+                    if(r>=0 && r<m && c>=0 && c<n && grid[r][c]==1)
                     {
                         grid[r][c]=2;
                         q.push({r,c});
                         fresh--;
                     }
-                    
                 }
             }
             ans++; 
+            cout<<"b4 "<<fresh<<endl;
+            if(fresh == 0) break;
+            for(int i=0; i<m; i++)
+            {
+                for(int j=0; j<n; j++)
+                {
+                    cout<<grid[i][j]<<" ";
+                }
+                cout<<endl;
+            }
+            cout<<"after "<<ans<<endl;
         }
         if(fresh>0) return -1;
-        if(ans==0) return 0; 
-        return ans-1;
-        
+        if(ans == 0) return 0; 
+        return ans;
+        // 2 0 1
+        // 1 0 1
+        // 1 1 1
     }
 };
