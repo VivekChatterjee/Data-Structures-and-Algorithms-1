@@ -31,7 +31,7 @@ public:
     
     string makeGood(string s) {
         int i=0;
-        while(s.size() > i+1)
+        while(i<(int)s.size()-1)
         {
             // cout<<i<<" "<<s.size()<<endl;
             if(abs(s[i+1]-s[i]) == 32)
@@ -40,8 +40,6 @@ public:
                 s.erase(s.begin()+i);
                 if(i!=0)
                    i--;
-                else
-                    continue;
             }
             else
             {   
