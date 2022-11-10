@@ -42,6 +42,7 @@ public:
                    i--;
             }
             else i++;
+            n=s.size();
         }
         return s;
     }
