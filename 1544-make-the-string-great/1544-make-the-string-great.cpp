@@ -31,9 +31,9 @@ public:
     string makeGood(string s) {
         int i=0;
         // s.size() here returns an unsigned value (size_t) so when s.size() becomes 1 s.size()-1 becomes -1 and -1 in unsigned becomes a very large value so the loop continues to run
-        while(i<(int)s.size()-1) 
+        int n=s.size();
+        while(i<n-1) 
         {
-            cout<<i<<" "<<s.size()-1<<endl;
             if(abs(s[i+1]-s[i]) == 32)
             {
                 s.erase(s.begin()+i);
