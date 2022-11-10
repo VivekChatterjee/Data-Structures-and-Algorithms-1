@@ -1,18 +1,24 @@
 class StockSpanner {
 public:
     stack<pair<int,int>>s;
+    int i=0;
+    bool smallerExist=0;
     StockSpanner() {
+        
     }
+    
     int next(int price) {
-        int currentStreak = 1;
         while(!s.empty() && s.top().first <= price)
         {
-            int previousStreak = s.top().second;
-            currentStreak+=previousStreak;
+            smallerExist=1;
             s.pop();
         }
-        s.push({price, currentStreak});
-        return currentStreak;
+        int count = 1;
+        if(smallerExist && s.empty()) count = i - (-1);
+        else if(!s.empty()) count = i - s.top().second;
+        s.push({price, i});
+        i++;
+        return count;
     }
 };
 
