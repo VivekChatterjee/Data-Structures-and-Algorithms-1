@@ -38,7 +38,7 @@ public:
             ll ans = 0;
             for(int i=0; i<number.size(); i++)
             {
-                ans+=number[i] * (pow(10,abs(k--) ));
+                ans=ans*10+number[i];
                 if(ans > INT_MAX) return -1;
             }
             return ans;
