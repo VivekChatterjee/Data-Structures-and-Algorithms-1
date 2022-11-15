@@ -17,7 +17,7 @@ public:
                 if(inter[j][0] <= e)
                 {
                     e=max(e, inter[j][1]);
-                    s=min(s, inter[j][0]);
+                    // s=min(s, inter[j][0]);
                 }
             }
             ans.push_back({s, e});
