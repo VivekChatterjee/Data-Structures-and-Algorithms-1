@@ -7,7 +7,8 @@ public:
         for(int i=0; i<n; i++)
         {
             int lastNum = (ans.empty())? INT_MAX : ans.back()[1];
-            if(ans.empty() || lastNum < inter[i][0]) ans.push_back( {inter[i][0] , inter[i][1]});
+            if(ans.empty() || lastNum < inter[i][0])
+                ans.push_back( {inter[i][0] , inter[i][1]});
             else
             {
                 if(max(lastNum, inter[i][1]) > lastNum)
