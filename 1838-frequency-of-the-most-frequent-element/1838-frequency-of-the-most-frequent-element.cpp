@@ -10,17 +10,15 @@ public:
         sort(nums.begin(), nums.end());
         while(start <= end && end < n)
         {
-            opt+= (ll)((ll)(nums[end] - nums[end-1]) * (ll)(end - start));
+            opt+= ((ll)(nums[end] - nums[end-1]) * (ll)(end - start));
             if(opt <= k) maxFreq = max(maxFreq, end-start+1);
             else
             {
                 while(opt > k)
                 {
-                    opt-= (ll)nums[end] - nums[start];
+                    opt-= nums[end] - nums[start];
                     start++;
                 }
-                opt = max((ll)0, opt);
-                if(opt <= k) maxFreq = max(maxFreq, end-start+1);
             }
             end++;
         }
