@@ -6,21 +6,16 @@ public:
         vector<vector<int>>ans;
         for(int i=0; i<n; i++)
         {
-            int s=inter[i][0];
-            int e=inter[i][1];
-            if(!ans.empty())
+            int lastNum = (ans.empty())? INT_MAX : ans.back()[1];
+            if(ans.empty() || lastNum < inter[i][0]) ans.push_back( {inter[i][0] , inter[i][1]});
+            else
             {
-                if(s <= ans.back()[1]) continue;
-            }
-            for(int j=i+1; j<n; j++)
-            {
-                if(inter[j][0] <= e)
+                if(max(lastNum, inter[i][1]) > lastNum)
                 {
-                    e=max(e, inter[j][1]);
-                    // s=min(s, inter[j][0]);
+                    lastNum = max(lastNum, inter[i][1]);
+                    ans.back()[1] = lastNum;
                 }
             }
-            ans.push_back({s, e});
         }
         return ans;
     }
