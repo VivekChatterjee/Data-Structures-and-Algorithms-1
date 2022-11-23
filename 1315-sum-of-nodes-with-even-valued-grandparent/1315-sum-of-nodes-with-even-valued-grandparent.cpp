@@ -11,43 +11,28 @@
  */
 class Solution {
 public:
-    int sumEvenGrandparent(TreeNode* root) {
-        unordered_map<TreeNode*, TreeNode*>par;
-        par[root] = NULL;
-        queue<TreeNode*>q;
-        q.push(root);
-        int sum = 0;
-        while(!q.empty())
+    void grand(TreeNode* root, int &sum)
+    {
+        if(!root) return;
+        if(root->val % 2 == 0)
         {
-            int n=q.size();
-            for(int i=0; i<n; i++)
+            if(root->left)
             {
-                TreeNode* node=q.front();
-                q.pop();
-                if(par.count(node) && par[node])
-                {
-                    if(par.count(par[node]) && par[par[node]])
-                    {
-                        int num = (par[par[node]])->val;
-                        if(num % 2 == 0)
-                        {
-                        //     cout<<num<<" > "<<node->val<<endl;
-                            sum+=node->val;
-                        }
-                    }
-                }
-                if(node->left)
-                {
-                    q.push(node->left);
-                    par[node->left] = node;
-                }
-                if(node->right)
-                {
-                    q.push(node->right);
-                    par[node->right] = node;
-                }
+                if(root->left->left) sum+=root->left->left->val;
+                if(root->left->right) sum+=root->left->right->val;
+            }
+            if(root->right)
+            {
+                if(root->right->left) sum+=root->right->left->val;
+                if(root->right->right) sum+=root->right->right->val;
             }
         }
+        grand(root->left, sum);
+        grand(root->right, sum);
+    } 
+    int sumEvenGrandparent(TreeNode* root) {
+        int sum=0;
+        grand(root, sum);
         return sum;
     }
 };
