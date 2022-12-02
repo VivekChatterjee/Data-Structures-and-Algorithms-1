@@ -9,17 +9,16 @@ public:
             cur+=nums[j];
             if(cur >= target)
             {
-                mini = min(mini, j-i+1);
                 while(cur >= target)
                 {
+                    mini = min(mini, j-i+1);
                     cur-=nums[i];
                     i++;
-                    if(cur >= target) mini = min(mini, j-i+1);
                 }
+                
             }
             j++;           
         }
-        if(mini == INT_MAX) mini=0;
-        return mini;
+        return (mini == INT_MAX)? 0 : mini;
     }
 };
