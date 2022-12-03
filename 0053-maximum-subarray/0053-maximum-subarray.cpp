@@ -2,20 +2,24 @@ class Solution {
 public:
     // using kadane
     int maxSubArray(vector<int>& nums) {
-        int s=0, e=0;
-        int ans=nums[0], cur=0;
         int n = nums.size();
-        while(e<n)
+        int i=0, ans=nums[0], cur=0, start = 0, end = 0;
+        while(i<n)
         {
-            cur+=nums[e];
-            ans = max(ans, cur);
+            cur+=nums[i];
+            if(cur > ans)
+            {
+                ans = cur;
+                end = i;
+            }
             if(cur < 0)
             {
                 cur=0;
-                s=e+1;
+                start = i+1;
             }
-            e++;
+            i++;
         }
+        // cout<<end-start+1<<endl; for length
         return ans;
     }
 };
