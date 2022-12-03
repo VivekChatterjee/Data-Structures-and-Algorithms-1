@@ -2,11 +2,10 @@ class Solution {
 public:
     static bool mycomp(pair<int, char>a, pair<int, char>b)
     {
-        // if(a.first>=b.first)
-        //     return true;
-        // return false;
+        if(a.first > b.first)
+            return true;
+        return false;
         
-        return a.first > b.first;
     }
     string frequencySort(string s) {
         unordered_map<char, int>freq;
