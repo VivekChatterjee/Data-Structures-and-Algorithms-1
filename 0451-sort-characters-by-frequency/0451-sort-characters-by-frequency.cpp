@@ -1,39 +1,18 @@
-// class Solution {
-// public:
-//     string frequencySort(string s) {
-//         vector<char>v(126);
-//         for(char c:s) v[c]++;
-//         vector<pair<int,char>>all;
-//         for(int i=1; i<126; i++)
-//         {
-//             if(v[i] != 0) all.push_back({v[i] , (char)i});
-//         }
-//         sort(all.begin(), all.end(), greater<pair<int,char>>());
-//         string ans="";
-//         for(auto i: all)
-//         {
-//             while(i.first--) ans+=i.second;            
-//         }
-//         return ans;
-//     }
-// };
 class Solution {
 public:
     string frequencySort(string s) {
-        unordered_map<char,int>m;
-        for(char c:s) m[c]++;
-        priority_queue<pair<int,char>>p;
-        for(auto i:m)
+        unordered_map<int,int>v;
+        for(char c:s) v[c]++;
+        multiset<pair<int, char>>all;
+        for(int i=1; i<126; i++)
         {
-            p.push({i.second, i.first});
+            if(v[i] != 0) all.insert({v[i] , (char)i});
         }
         string ans="";
-        while(!p.empty())
+        for(auto it= all.rbegin(); it!=all.rend(); it++)
         {
-            int num=p.top().first;
-            char c=p.top().second;
-            while(num--) ans+=c;
-            p.pop();
+            int num = it->first;
+            while(num--) ans+=it->second;
         }
         return ans;
     }
