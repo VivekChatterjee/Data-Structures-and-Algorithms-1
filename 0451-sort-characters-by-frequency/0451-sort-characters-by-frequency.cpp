@@ -1,18 +1,36 @@
 class Solution {
 public:
+    static bool mycomp(pair<int, char>a, pair<int, char>b)
+    {
+        // if(a.first>=b.first)
+        //     return true;
+        // return false;
+        
+        return a.first > b.first;
+    }
     string frequencySort(string s) {
-        unordered_map<int,int>v;
-        for(char c:s) v[c]++;
-        multiset<pair<int, char>>all;
-        for(int i=1; i<126; i++)
+        unordered_map<char, int>freq;
+        int n = s.size();
+        for(int i=0;i<n;i++)
         {
-            if(v[i] != 0) all.insert({v[i] , (char)i});
+            freq[s[i]]++;
         }
-        string ans="";
-        for(auto it= all.rbegin(); it!=all.rend(); it++)
+        vector<pair<int, char>>ele;
+        for(auto x: freq)
         {
-            int num = it->first;
-            while(num--) ans+=it->second;
+            char ch = x.first;
+            int times = x.second;
+            ele.push_back({times, ch});
+        }
+        sort(ele.begin(), ele.end(),mycomp);
+        string ans = "";
+        for(auto x: ele)
+        {
+            int times = x.first;
+            while(times--)
+            {
+                ans+=x.second;
+            }
         }
         return ans;
     }
