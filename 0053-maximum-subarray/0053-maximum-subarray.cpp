@@ -1,22 +1,20 @@
 class Solution {
 public:
+    // using kadane
     int maxSubArray(vector<int>& nums) {
-        int ans = nums[0];
-        int sumEndsHere = 0;
-        int start = 0, end = 0;
-        for(int i=0; i<nums.size(); i++)
+        int s=0, e=0;
+        int ans=nums[0], cur=0;
+        int n = nums.size();
+        while(e<n)
         {
-            sumEndsHere+=nums[i];
-            if(sumEndsHere > ans)
+            cur+=nums[e];
+            ans = max(ans, cur);
+            if(cur < 0)
             {
-                ans = sumEndsHere;
-                end = i;
+                cur=0;
+                s=e+1;
             }
-            if(sumEndsHere < 0)
-            {
-                sumEndsHere = 0;
-                start = i+1;
-            }
+            e++;
         }
         return ans;
     }
