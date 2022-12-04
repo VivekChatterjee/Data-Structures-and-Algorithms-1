@@ -7,7 +7,7 @@ public:
         {
             if(nums[i] > cur)
             {
-                if(nums[i] % cur == 0) count += (nums[i]/cur - 1);
+                if(nums[i] % cur == 0) count += (nums[i] / cur - 1);
                 else count += (nums[i] / cur);
             }            
             if(count > op) return 0;
@@ -15,7 +15,6 @@ public:
         return 1;
     }
     int minimumSize(vector<int>& nums, int op) {
-        sort(nums.begin(), nums.end());
         int maxi = INT_MIN;
         for(int i: nums) maxi = max(maxi, i);
         int low = 1 , high = maxi, ans = INT_MAX;
