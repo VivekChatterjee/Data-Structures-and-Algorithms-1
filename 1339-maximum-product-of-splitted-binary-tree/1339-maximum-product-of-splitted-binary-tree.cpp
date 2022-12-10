@@ -13,6 +13,7 @@
 class Solution {
 public:
     ll K = 1e9+7, ans = 0;
+    // map to store sum of each node till last node
     unordered_map<TreeNode*, ll>m;
     ll sumTree(TreeNode* root)
     {
@@ -23,21 +24,21 @@ public:
     {
         if(!root) return;
         ll lSum = 0, rSum = 0;
+        // breaking the left edge
         if(root->left)
         {
-            // lSum = sumTree(root->left) ;
+            // sum of left subtree
             lSum = m[root->left];
             rSum = total - lSum ;
-            ll pro = (ll)lSum * (ll)rSum;
-            ans = max(ans, pro);
+            ans = max(ans, lSum * rSum);
         }
+        // breaking the right edge
         if(root->right)
         {
-            // rSum = sumTree(root->right);
+            // sum of right subtree
             rSum = m[root->right];
             lSum = total - rSum ;
-            ll pro = (ll)lSum * (ll)rSum;
-            ans = max(ans, pro);
+            ans = max(ans, lSum * rSum);
         }
         productTree(root->left, total);
         productTree(root->right, total);
